@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="credentialForm">
+    <ion-item>
+      <ion-input
+        placeholder="Correo electrónico"
+        formControlName="email"
+        autofocus="true"
+        clearInput="true"
+      ></ion-input>
+    </ion-item>
+    <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
+      <span *ngIf="email.errors?.required">Campo requerido</span>
+      <span *ngIf="email.errors?.email">El correo es incorrecto</span>
+    </div>
+
+    <ion-item>
+      <ion-input
+      placeholder="Contraseña"
+      type="password"
+      formControlName="password"
+      clearInput="true"
+    ></ion-input>
+    </ion-item>
+    <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
+      <span *ngIf="password.errors?.required">Campo requerido</span>
+      <span *ngIf="password.errors?.minlength">La contraseña debe tener mínimo 6 caracteres</span>
+    </div>
+
+  </form>
+
+  <ion-button (click)="register()" expand="full" color="secondary">REGISTRARSE</ion-button>
+
+  <ion-item>
+    <ion-button (click)="login()" fill="outline" color="secondary">Inicia sesión</ion-button>
+  </ion-item>
+
+</ion-content>
