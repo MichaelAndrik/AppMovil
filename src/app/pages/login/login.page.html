@@ -9,7 +9,7 @@
   <form [formGroup]="credentialForm">
     <ion-item>
       <ion-input
-        placeholder="Email address"
+        placeholder="Email"
         formControlName="email"
         autofocus="true"
         clearInput="true"
@@ -22,7 +22,7 @@
 
     <ion-item>
       <ion-input
-      placeholder="Password"
+      placeholder="Contraseña"
       type="password"
       formControlName="password"
       clearInput="true"
@@ -35,7 +35,13 @@
 
   </form>
 
-  <ion-button (click)="signUp()" expand="full">Registrarse</ion-button>
-  <ion-button (click)="signIn()" expand="full" color="secondary">Iniciar Sesion</ion-button>
+  
+  <ion-button (click)="login()" expand="full" color="secondary">Iniciar Sesion</ion-button>
 
+  <ion-button (click)="register()" expand="full">Registrarse</ion-button>
+
+  <ion-item>
+    <ion-button (click)="recoverPassword()" fill="outline" color="secondary">¿Has olvidado tu contraseña?</ion-button>
+  </ion-item>
+  
 </ion-content>

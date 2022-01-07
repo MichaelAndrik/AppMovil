@@ -25,35 +25,21 @@ export class LoginPage implements OnInit {
     });
   }
 
-  async signUp() {
-    const loading = await this.loadingController.create();
-    await loading.present();
-
-    this.chatService.signUp(this.credentialForm.value).then(user => {
-      loading.dismiss();
-      this.router.navigateByUrl('/chat', { replaceUrl: true });
-    }, async err => {
-      loading.dismiss();
-      const alert = await this.alertController.create({
-        header: 'Sign up failed',
-        message: err.message,
-        buttons: ['OK'],
-      });
-
-      await alert.present();
-    });
+  register(){
+    this.router.navigateByUrl('/register', { replaceUrl: true });
   }
 
-  async signIn() {
+  async login() {
     const loading = await this.loadingController.create();
     await loading.present();
  
     this.chatService
-      .signIn(this.credentialForm.value)
+      .login(this.credentialForm.value)
       .then(
-        (res) => {
+        async (res) => {
           loading.dismiss();
-          this.router.navigateByUrl('/chat', { replaceUrl: true });
+          const user = await this.chatService.login(this.credentialForm.value);
+          this.checkUserIsVerified(user.user);
         },
         async (err) => {
           loading.dismiss();
@@ -67,6 +53,9 @@ export class LoginPage implements OnInit {
         }
       );
   }
+  recoverPassword(){
+    this.router.navigateByUrl('/recover-password', { replaceUrl: true });
+  }
  
   // Easy access for form fields
   get email() {
@@ -75,6 +64,16 @@ export class LoginPage implements OnInit {
   
   get password() {
     return this.credentialForm.get('password');
+  }
+
+  private checkUserIsVerified(user) {
+    if (user && user.emailVerified) {
+      this.router.navigateByUrl('/chat', { replaceUrl: true });
+    } else if (user){
+      this.router.navigateByUrl('/verification-email', { replaceUrl: true });
+    } else{
+      this.router.navigateByUrl('/', { replaceUrl: true });
+    }
   }
 
 }

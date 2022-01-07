@@ -11,6 +11,7 @@ export const environment = {
     apiKey: keys.apiKey,
     authDomain: keys.authDomain,
     messagingSenderId: keys.messagingSenderId,
+    measurementId: keys.measurementId,
   },
   production: false,
 };

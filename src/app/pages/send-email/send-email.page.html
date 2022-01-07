@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>MyChat</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="ngOnDestroy()">
+        <ion-icon name="log-out" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding"> 
+
+<ion-grid>
+  <ion-row>
+    <ion-col>
+        <ion-label>
+          Revise su correo electrónico, se ha enviado un correo de confirmación a
+          <ng-container *ngIf="user$ | async as user; else loading">
+            <strong>{{ user?.email }}</strong>
+          </ng-container>
+        </ion-label>
+        <br>
+        <br>
+        <br>
+        <ion-item>
+          <ion-label> ¿No has recibido el correo de confirmación? </ion-label>
+          <ion-button (click)="onSendEmail()" fill="outline" color="secondary">Reenviar correo</ion-button>
+        </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>
+
+<ng-template #loading>
+  Cargando....
+</ng-template>

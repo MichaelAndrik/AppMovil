@@ -20,6 +20,18 @@ const routes: Routes = [
     loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule),
     ...canActivate(redirectUnauthorizedToLogin)
   },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'recover-password',
+    loadChildren: () => import('./pages/recover-password/recover-password.module').then( m => m.RecoverPasswordPageModule)
+  },
+  {
+    path: 'verification-email',
+    loadChildren: () => import('./pages/send-email/send-email.module').then( m => m.SendEmailPageModule)
+  },
 ];
 
 @NgModule({
