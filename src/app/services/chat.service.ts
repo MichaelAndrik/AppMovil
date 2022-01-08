@@ -37,26 +37,16 @@ export class ChatService {
   currentUser: User = null;
 
   public filesCollection: AngularFirestoreCollection<imgFile>;
-  // File upload task 
   fileUploadTask: AngularFireUploadTask;
-
-  // Upload progress
   percentageVal: Observable<number>;
-
-  // Track file uploading with snapshot
   trackSnapshot: Observable<any>;
-
-  // Uploaded File URL
   UploadedImageURL: Observable<string>;
 
-  // Uploaded image collection
   files: Observable<imgFile[]>;
 
-  // Image specifications
   imgName: string;
   imgSize: number;
 
-  // File uploading status
   isFileUploading: boolean;
   isFileUploaded: boolean;
 
@@ -68,7 +58,6 @@ export class ChatService {
     this.isFileUploading = false;
     this.isFileUploaded = false;
     
-    // Define uploaded files collection
     this.filesCollection = afs.collection<imgFile>('imagesCollection');
     this.files = this.filesCollection.valueChanges();
   }
